@@ -7,4 +7,6 @@ public class Adversary {
     {
         this.turnSymbol = turnSymbol;
     }
+
+
 }

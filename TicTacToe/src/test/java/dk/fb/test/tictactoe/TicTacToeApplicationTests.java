@@ -3,11 +3,9 @@ package dk.fb.test.tictactoe;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.Arrays;
 
-import junit.framework.TestCase; //?? - didn't end up needing this?? - Guess it's JUnit3??
-
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -19,14 +17,14 @@ class TicTacToeApplicationTests {
 
     //region Board tests
     @Test
-    public void test_Board_Creation_Is_Not_Null()
+    public void Test_Board_Creation_Is_Not_Null()
     {
         Board board = new Board();
         assertNotNull(board);
     }
 
     @Test
-    public void test_New_Board_Has_Empty_Board_Slots()
+    public void Test_New_Board_Has_Cells_With_Empty_Symbol_Only()
     {
         Board board = new Board();
 
@@ -34,10 +32,21 @@ class TicTacToeApplicationTests {
         board.PrintBoard();
 
         // Run through board slots
-        for (String boardSlot: board.boardSlots
+        for (String boardCell: board.boardCells
              ) {
-            assertNull(boardSlot);
+            assertEquals(".", boardCell);
         }
+    }
+
+    @Test
+    public void Should_Count_9_Empty_Board_Cells_On_New_Board()
+    {
+        Board board = new Board();
+
+        // Only for visual confirmation
+        board.PrintBoard();
+
+        assertEquals(9, board.getEmptyCells());
     }
     //endregion Board tests
 
@@ -72,4 +81,88 @@ class TicTacToeApplicationTests {
         assertEquals("O", adversary.turnSymbol);
     }
     //endregion Adversary tests
+
+    //region Game tests
+    @Test
+    public void Test_Game_Instance_Is_Created()
+    {
+        Game game = new Game();
+        assertNotNull(game);
+    }
+
+    @Test
+    public void Test_Game_Instance_Starts_On_Turn_0()
+    {
+        Game game = new Game();
+        assertEquals(0, game.GetTurn());
+    }
+
+    @Test
+    public void Test_Game_Instance_Turn_Can_Increase()
+    {
+        Game game = new Game();
+        game.NextTurn();
+        assertEquals(1, game.GetTurn());
+    }
+
+    @Test
+    public void Test_Game_Instance_Turns_Cant_Increase_Past_8()
+    {
+        Game game = new Game();
+        for (int i = 0; i < 9; i++)
+        {
+            game.NextTurn();
+        }
+
+        assertEquals(8, game.GetTurn());
+    }
+
+    @Test
+    public void Should_Return_Move_Is_Legal_On_New_Board()
+    {
+        Board board = new Board();
+        board.ClearBoard();
+        Game game = new Game();
+
+        assertTrue(game.checkLegalMove(board, 0));
+    }
+
+    @Test
+    public void Should_Return_Move_Is_Illegal_On_Occupied_Board_Slot()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        board.boardCells[1] = game.ai_Symbol;
+
+        assertTrue(!game.checkLegalMove(board, 1));
+    }
+
+    @Test
+    public void Should_Place_ai_Symbol_On_New_Board_Once()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        board = game.ai_Move(board);
+
+        System.out.println("Testing placing ai symbol on new board: ");
+        board.PrintBoard();
+        assertTrue(Arrays.asList(board.boardCells).contains(game.ai_Symbol));
+    }
+
+    @Test
+    public void Should_Place_Player_Symbol_On_New_Board_Once()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        board = game.player_Move(board);
+
+        System.out.println("Testing placing player symbol on new board: ");
+        board.PrintBoard();
+        assertTrue(Arrays.asList(board.boardCells).contains(game.playerSymbol));
+    }
+    //endregion Game tests
+
 }
