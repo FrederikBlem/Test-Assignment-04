@@ -295,6 +295,20 @@ class TicTacToeApplicationTests {
 
         assertFalse(game.GetIsWin(board, game.playerSymbol));
     }
+
+    //TODO: Not sure how to test this without input capability!
+    /*
+    @Test
+    public void Legal_Move_Cannot_Be_Anything_Beside_A_Number_In_0_To_8_Range()
+    {
+        Board board = new Board();
+        board.ClearBoard();
+        Game game = new Game();
+
+
+    }
+    */
+
     //endregion Game tests
 
 }
