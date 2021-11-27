@@ -135,7 +135,7 @@ class TicTacToeApplicationTests {
 
         board.boardCells[1] = game.ai_Symbol;
 
-        assertTrue(!game.checkLegalMove(board, 1));
+        assertFalse(game.checkLegalMove(board, 1));
     }
 
     @Test
@@ -143,14 +143,19 @@ class TicTacToeApplicationTests {
     {
         Board board = new Board();
         Game game = new Game();
-
-        board = game.ai_Move(board);
+        board.ClearBoard(); //For testing purposes
 
         System.out.println("Testing placing ai symbol on new board: ");
+        board.PrintBoard();
+        board = game.ai_Move(board);
+
+        System.out.println("Updated board print: ");
         board.PrintBoard();
         assertTrue(Arrays.asList(board.boardCells).contains(game.ai_Symbol));
     }
 
+    //TODO: Find workaround for test that halts because the view is read-only.
+    /*
     @Test
     public void Should_Place_Player_Symbol_On_New_Board_Once()
     {
@@ -162,6 +167,133 @@ class TicTacToeApplicationTests {
         System.out.println("Testing placing player symbol on new board: ");
         board.PrintBoard();
         assertTrue(Arrays.asList(board.boardCells).contains(game.playerSymbol));
+    }
+    */
+
+    @Test
+    public void Game_Should_Be_Won_By_Player_If_Cells_0_1_2_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[0] = game.playerSymbol;
+        board.boardCells[1] = game.playerSymbol;
+        board.boardCells[2] = game.playerSymbol;
+
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_By_Player_If_Cells_3_4_5_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[3] = game.playerSymbol;
+        board.boardCells[4] = game.playerSymbol;
+        board.boardCells[5] = game.playerSymbol;
+
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_By_If_Cells_6_7_8_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[6] = game.playerSymbol;
+        board.boardCells[7] = game.playerSymbol;
+        board.boardCells[8] = game.playerSymbol;
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_If_Cells_0_3_6_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[0] = game.playerSymbol;
+        board.boardCells[3] = game.playerSymbol;
+        board.boardCells[6] = game.playerSymbol;
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_If_Cells_1_4_7_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[1] = game.playerSymbol;
+        board.boardCells[4] = game.playerSymbol;
+        board.boardCells[7] = game.playerSymbol;
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_If_Cells_2_5_8_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[2] = game.playerSymbol;
+        board.boardCells[5] = game.playerSymbol;
+        board.boardCells[8] = game.playerSymbol;
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_If_0_4_8_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[0] = game.playerSymbol;
+        board.boardCells[4] = game.playerSymbol;
+        board.boardCells[8] = game.playerSymbol;
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Be_Won_If_2_4_6_Are_Occupied_By_player_symbol()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[2] = game.playerSymbol;
+        board.boardCells[4] = game.playerSymbol;
+        board.boardCells[6] = game.playerSymbol;
+
+        assertTrue(game.GetIsWin(board, game.playerSymbol));
+    }
+
+    @Test
+    public void Game_Should_Not_Be_Won_After_Single_Move()
+    {
+        Board board = new Board();
+        Game game = new Game();
+
+        //TODO: replace with game.player_Move(board) if possible to get input in future...
+        board.boardCells[2] = game.playerSymbol;
+
+        assertFalse(game.GetIsWin(board, game.playerSymbol));
     }
     //endregion Game tests
 

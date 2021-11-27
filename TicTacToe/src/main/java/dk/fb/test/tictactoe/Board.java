@@ -40,7 +40,7 @@ public class Board {
         int countEmptyCells = 0;
         for (String boardCell: boardCells)
         {
-            if (boardCell == null || boardCell == ".")
+            if (boardCell == ".")
             {
                 countEmptyCells++;
             }
