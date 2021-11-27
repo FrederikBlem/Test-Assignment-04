@@ -18,24 +18,18 @@ Using TDD, make at least one of the following three tasks, A, B or C. Whatever y
 choose, include coverage report (e.g. Jacoco) and mutation testing (e.g. PITest), and 
 static analysis (e.g. Findbugs, PMD, CheckStyle).
 
-### A: Snake game: Make a classic snake game using TDD. To remind you the (minimum) 
-rules of snake (you can make more features if you like): 
-
-* You control a the direction of a continuously moving snake, going up, down, left 
-or right – the snake cannot stop moving. 
-* At any point in time, there is an apple somewhere on the playing field. 
-* When the snake’s head runs into the apple, the snake’s body gets longer. 
-* The snake dies if it runs into its own body, or a wall (if your game has walls). If 
-the game doesn’t have walls, the snake should wrap around (like in Pacman). 
-* The winning state is to run out of space.  
-* Choose a point system of your liking. Inspiration: 
-–  Point(s) added for each apple eaten 
-–  Point(s) subtracted when starving (e.g. no apple eaten for an amount of 
-time) 
-### B: JSON-parser: Make a JSON-parser using TDD. Find the JSON RFC for reference. 
-
-### C: Tic-tac-toe: Make a tic-tac-toe game using TDD. It should play against the human 
-player. If you already had the Data Science course, you can try to make an AI with 
+### C: Tic-tac-toe: Make a tic-tac-toe game using TDD. 
+<b><u>Requirements:</u></b><br>
+<b>It should play against the human player. If you already had the Data Science course, you can try to make an AI with 
 Minimax. Otherwise, simply have the AI make random moves – but the checks for 
 win/loss, and the correct game flow (turn taking, handling human error of giving 
-incorrect placement, etc.) must be implemented. 
+incorrect placement, etc.) must be implemented.</b>
+
+The code for this game was made strictly following TDD and frankly became very messy.
+The half-baked attempt at ordering the tests with 'regions' also did not help sufficiently.
+That said, while the game is missing some input exception handling because I did not find a way to sufficiently simulate wrong input, 
+it does run when getting the expected input.<br>
+[Tests.](https://github.com/FrederikBlem/Test-Assignment-04/blob/main/TicTacToe/src/test/java/dk/fb/test/tictactoe/TicTacToeApplicationTests.java)<br>
+[Classes.](https://github.com/FrederikBlem/Test-Assignment-04/tree/main/TicTacToe/src/main/java/dk/fb/test/tictactoe).
+
+Still TODO: coverage report, mutation testing and static analysis.
