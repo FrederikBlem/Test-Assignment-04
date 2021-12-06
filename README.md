@@ -7,11 +7,37 @@ Answer the following questions about Mockito. Use code examples in your
 explanations.
 
 * How do you verify that a mock was called?
+```
+verify(mockObject).someMethodOfMockObject(someArgument);
+```
 * How do you verify that a mock was NOT called?
+```
+verify(mockObject, never()).someMethodOfMockObject(someArgument);
+```
 * How do you specify how many times a mock should have been called?
+```
+verify(mockObject, times(n)).someMethodOfMockObject(someArgument);
+```
+Where n is the specified amount of times you want to be sure it has been called.
 * How do you verify that a mock was called with specific arguments?
+
+Using argThat alone:
+```
+verify(mockObject)
+  .someMethodOfMockObject(
+    argThat(x -> x.subMethodGetId() == wantedId &&
+      x.subMethodGetName() == wantedName
+    ));
+```
+or using eq as well:
+```
+ verify(mockObject).someMethodOfMockObject(eq("VALUE_1"), argThat((x)->false));
+```
+Supposedly you're not supposed to use eq by itself.
+
 * How do you use a predicate to verify the properties of the arguments given to a 
 call to the mock?
+It seems that many people are having problems with using predicates for Mockito and the answer evades me as well.
 
 ## 2 At Least One
 Using TDD, make at least one of the following three tasks, A, B or C. Whatever you 
