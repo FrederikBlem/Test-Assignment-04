@@ -6,20 +6,20 @@ The fourth assignment of the Test subject.<br>
 Answer the following questions about Mockito. Use code examples in your 
 explanations.
 
-* How do you verify that a mock was called?
+* <b>How do you verify that a mock was called?</b>
 ```
 verify(mockObject).someMethodOfMockObject(someArgument);
 ```
-* How do you verify that a mock was NOT called?
+* <b>How do you verify that a mock was NOT called?</b>
 ```
 verify(mockObject, never()).someMethodOfMockObject(someArgument);
 ```
-* How do you specify how many times a mock should have been called?
+* <b>How do you specify how many times a mock should have been called?</b>
 ```
 verify(mockObject, times(n)).someMethodOfMockObject(someArgument);
 ```
 Where n is the specified amount of times you want to be sure it has been called.
-* How do you verify that a mock was called with specific arguments?
+* <b>How do you verify that a mock was called with specific arguments?</b>
 
 Using argThat alone:
 ```
@@ -35,8 +35,8 @@ or using eq as well:
 ```
 Supposedly you're not supposed to use eq by itself.
 
-* How do you use a predicate to verify the properties of the arguments given to a 
-call to the mock?
+* <b>How do you use a predicate to verify the properties of the arguments given to a 
+call to the mock?</b><br>
 It seems that many people are having problems with using predicates for Mockito and the answer evades me as well.
 
 ## 2 At Least One
