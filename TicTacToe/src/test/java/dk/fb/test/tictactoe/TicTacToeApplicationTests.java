@@ -1,6 +1,10 @@
 package dk.fb.test.tictactoe;
 
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
@@ -8,8 +12,15 @@ import java.util.Arrays;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+@RunWith(MockitoJUnitRunner.class)
+
 @SpringBootTest
 class TicTacToeApplicationTests {
+
+
 
     @Test
     void contextLoads() {
